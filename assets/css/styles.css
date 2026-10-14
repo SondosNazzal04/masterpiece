@@ -442,41 +442,43 @@ body {
 }
 
 /* =========================================================
-   Hero row — ring + counters
+   Progress banner — ring + text
    ========================================================= */
-.hero-row {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.ring-card {
-  position: relative;
-  display: grid;
-  place-items: center;
-  padding: 16px;
+.progress-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  padding: 16px 24px;
+  margin-bottom: 12px;
+}
+
+.progress-ring-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
 }
 
 .ring {
-  width: 140px;
-  height: 140px;
-  transform: rotate(-90deg);   /* start at 12 o'clock */
+  width: 72px;
+  height: 72px;
+  transform: rotate(-90deg);
+  display: block;
 }
 
 .ring-track {
   fill: none;
-  stroke: var(--surface-2);
-  stroke-width: 10;
+  stroke: var(--accent-soft);
+  stroke-width: 8;
 }
 
 .ring-fill {
   fill: none;
   stroke: var(--primary);
-  stroke-width: 10;
+  stroke-width: 8;
   stroke-linecap: round;
   transition: stroke-dashoffset 900ms ease-out;
 }
@@ -484,33 +486,73 @@ body {
 .ring-center {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
 }
 
 .ring-num {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1;
   color: var(--text);
 }
 
-.ring-label {
-  font-size: 11px;
+.ring-pct {
+  font-size: 12px;
+  font-weight: 600;
   color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
-/* Counters — now 4 equal cells inside the hero row */
+.progress-text { min-width: 0; }
+
+.progress-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  margin-bottom: 3px;
+}
+
+.progress-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* =========================================================
+   Counters — compact row
+   ========================================================= */
 .summary {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+  margin-bottom: 20px;
+}
+
+.summary .card {
+  padding: 14px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.summary .num {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.summary .label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  font-weight: 500;
 }
 
 .summary .card {
@@ -833,12 +875,13 @@ body {
   .summary .card:first-child { grid-column: span 1; }   /* ← delete this line */
 }
 
-@media (max-width: 900px) {
-  .hero-row { grid-template-columns: 1fr; }
-  .ring-card { padding: 20px; }
+@media (max-width: 700px) {
+  .summary { grid-template-columns: 1fr 1fr; }
+  .cover-title { font-size: 20px; }
 }
 
 @media (max-width: 700px) {
   .summary { grid-template-columns: 1fr 1fr; }
-  .cover-title { font-size: 20px; }
+  .progress-banner { padding: 14px 16px; gap: 16px; }
+  .progress-title { font-size: 14px; }
 }

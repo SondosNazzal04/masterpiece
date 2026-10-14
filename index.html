@@ -88,21 +88,27 @@
       </div>
 
       <!-- Status counts -->
-      <div class="hero-row">
-        <div class="card ring-card">
-          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
-            <circle class="ring-track" cx="60" cy="60" r="52" />
-            <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52"
-                    stroke-dasharray="326.7" stroke-dashoffset="326.7" />
+      <!-- Progress banner -->
+      <div class="progress-banner">
+        <div class="progress-ring-wrap">
+          <svg class="ring" viewBox="0 0 80 80" aria-hidden="true">
+            <circle class="ring-track" cx="40" cy="40" r="34" />
+            <circle class="ring-fill" id="ringFill" cx="40" cy="40" r="34"
+                    stroke-dasharray="213.6" stroke-dashoffset="213.6" />
           </svg>
           <div class="ring-center">
-            <div class="ring-num" id="ringNum">0</div>
-            <div class="ring-label">complete</div>
+            <span class="ring-num" id="ringNum">0</span><span class="ring-pct">%</span>
           </div>
         </div>
 
-        <div id="summary" class="summary"></div>
+        <div class="progress-text">
+          <div class="progress-title" id="progressTitle">You're making steady progress.</div>
+          <div class="progress-sub" id="progressSub">0 of 0 tasks done</div>
+        </div>
       </div>
+
+      <!-- Counters -->
+      <div id="summary" class="summary"></div>
       <!-- <div id="summary" class="summary"></div> -->
 
       <!-- Lead-only: workload -->

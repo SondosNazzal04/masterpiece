@@ -70,20 +70,37 @@ if (activeProject) {
 }
 
 /* ---------- Ring ---------- */
-const CIRC = 2 * Math.PI * 52;   // 326.7
+const CIRC = 2 * Math.PI * 34;   // 213.6 — circumference of r=34
 const ringFill = document.getElementById('ringFill');
 ringFill.setAttribute('stroke-dasharray', CIRC);
 ringFill.setAttribute('stroke-dashoffset', CIRC);
 
-// animate on next frame so transition fires
 requestAnimationFrame(() => {
   ringFill.style.strokeDashoffset = CIRC * (1 - pct / 100);
 });
 
-/* ---------- Ring number count-up ---------- */
+/* ---------- Ring number + banner text ---------- */
 const ringNum = document.getElementById('ringNum');
-countUp(ringNum, 0, pct, 900, '%');
+countUp(ringNum, 0, pct, 900);
 
+const doneCount = counts.done;
+const totalCount = visible.length;
+document.getElementById('progressSub').textContent =
+  `${doneCount} of ${totalCount} task${totalCount === 1 ? '' : 's'} done`;
+
+// Pick a message based on progress
+const titleEl = document.getElementById('progressTitle');
+if (pct === 100) {
+  titleEl.textContent = 'Project complete. Nice work.';
+} else if (pct >= 60) {
+  titleEl.textContent = "You're almost there.";
+} else if (pct >= 25) {
+  titleEl.textContent = "You're making steady progress.";
+} else if (pct > 0) {
+  titleEl.textContent = 'Just getting started.';
+} else {
+  titleEl.textContent = 'Nothing done yet — pick a task.';
+}
 /* ---------- Summary cards ---------- */
 document.getElementById('summary').innerHTML = `
   <div class="card"><div class="num" data-count="${counts.todo}">0</div>     <div class="label">To do</div></div>
