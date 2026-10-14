@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamFlow — Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-mark"></span>
+      <span>TeamFlow</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Project</div>
+        <a href="index.html" class="nav-link"><span class="nav-dot"></span> Overview</a>
+        <a href="tasks.html" class="nav-link"><span class="nav-dot"></span> Board</a>
+        <a href="insights.html" class="nav-link active"><span class="nav-dot"></span> Insights</a>
+        <a href="team.html" class="nav-link"><span class="nav-dot"></span> Team</a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-label">Account</div>
+        <a href="skills.html" class="nav-link"><span class="nav-dot"></span> Skill Profiles</a>
+        <a href="settings.html" class="nav-link"><span class="nav-dot"></span> Settings</a>
+      </div>
+    </nav>
+
+    <a href="login.html" class="sidebar-foot">
+      <div class="avatar">YA</div>
+      <div class="sidebar-user">
+        <div class="sidebar-user-name">Yazan Ahmad</div>
+        <div class="sidebar-user-role">Team lead</div>
+      </div>
+    </a>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="crumb">CampusConnect · Insights</div>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <h1 class="page-title">Insights</h1>
+        <p class="page-sub" id="insightsMeta">Looking at what needs attention this week.</p>
+      </div>
+
+      <!-- Summary tiles -->
+      <div class="risk-summary" id="riskSummary"></div>
+
+      <!-- Risk sections (rendered by JS) -->
+      <div id="riskSections"></div>
+
+      <!-- Empty state if all clear -->
+      <div id="allClear" class="all-clear" hidden>
+        <div class="all-clear-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </div>
+        <h2>All clear.</h2>
+        <p>No overdue tasks, no imbalances, no stalls. Nice work.</p>
+      </div>
+
+    </main>
+  </div>
+
+  <script type="module" src="assets/js/insights.js"></script>
+</body>
+</html>

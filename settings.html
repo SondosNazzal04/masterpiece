@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamFlow — Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-mark"></span>
+      <span>TeamFlow</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Project</div>
+        <a href="index.html" class="nav-link"><span class="nav-dot"></span> Overview</a>
+        <a href="tasks.html" class="nav-link"><span class="nav-dot"></span> Board</a>
+        <a href="insights.html" class="nav-link"><span class="nav-dot"></span> Insights</a>
+        <a href="team.html" class="nav-link"><span class="nav-dot"></span> Team</a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-label">Account</div>
+        <a href="skills.html" class="nav-link"><span class="nav-dot"></span> Skill Profiles</a>
+        <a href="settings.html" class="nav-link active"><span class="nav-dot"></span> Settings</a>
+      </div>
+    </nav>
+
+    <a href="login.html" class="sidebar-foot">
+      <div class="avatar">YA</div>
+      <div class="sidebar-user">
+        <div class="sidebar-user-name">Yazan Ahmad</div>
+        <div class="sidebar-user-role">Team lead</div>
+      </div>
+    </a>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="crumb">Account · Settings</div>
+    </header>
+
+    <main class="content">
+      <div class="page-head">
+        <h1 class="page-title">Settings</h1>
+        <p class="page-sub">Your profile and project preferences.</p>
+      </div>
+
+      <div class="settings-block">
+        <div class="settings-block-head">
+          <h3>Profile</h3>
+          <p>How you appear to your team.</p>
+        </div>
+        <form class="settings-form" id="profileForm">
+          <label class="field">
+            <span class="field-label">Full name</span>
+            <input class="field-input" type="text" value="Yazan Ahmad">
+          </label>
+          <label class="field">
+            <span class="field-label">Email</span>
+            <input class="field-input" type="email" value="yazan@example.com">
+          </label>
+          <label class="field">
+            <span class="field-label">GitHub username</span>
+            <input class="field-input" type="text" placeholder="octocat">
+          </label>
+          <button type="submit" class="btn-primary">Save changes</button>
+        </form>
+      </div>
+
+      <div class="settings-block">
+        <div class="settings-block-head">
+          <h3>Notifications</h3>
+          <p>What TeamFlow tells you about.</p>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-title">Task assigned to me</div>
+            <div class="toggle-sub">When someone assigns you a task</div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span></span></label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-title">Due date reminders</div>
+            <div class="toggle-sub">One day before a task is due</div>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span></span></label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-title">Weekly digest</div>
+            <div class="toggle-sub">A summary every Monday morning</div>
+          </div>
+          <label class="toggle"><input type="checkbox"><span></span></label>
+        </div>
+      </div>
+
+      <div class="settings-block danger-zone">
+        <div class="settings-block-head">
+          <h3>Danger zone</h3>
+          <p>Irreversible actions.</p>
+        </div>
+        <button class="btn-danger">Delete account</button>
+      </div>
+
+    </main>
+  </div>
+
+  <script type="module" src="assets/js/settings.js"></script>
+</body>
+</html>
