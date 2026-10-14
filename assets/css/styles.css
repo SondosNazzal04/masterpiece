@@ -214,3 +214,51 @@ body {
   .main { margin-left: 0; }
   .menu-btn { display: block; }
 }
+
+/* ---------- Scope bar ---------- */
+.scope-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.scope-bar select {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn-primary {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.btn-primary:hover { background: var(--primary-hover); }
+
+/* ---------- Row meta ---------- */
+.task-row .task-meta {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.empty {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 8px 0;
+}

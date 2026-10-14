@@ -11,7 +11,6 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">TeamFlow</div>
     <nav class="sidebar-nav">
@@ -23,22 +22,60 @@
     </nav>
   </aside>
 
-  <!-- Main -->
   <div class="main">
     <header class="topbar">
       <button class="menu-btn" id="menuBtn">☰</button>
       <h1 class="page-title">Overview</h1>
       <div class="user">
-        <div class="avatar">YA</div>
-        <span>Yazan</span>
+        <div class="avatar" id="userAvatar">YA</div>
+        <span id="userName">Yazan</span>
       </div>
     </header>
 
     <main class="content">
-      <!-- dashboard goes here in step 3 -->
-      <p style="color:var(--muted)">Dashboard coming next.</p>
+
+      <!-- Scope bar -->
+      <div class="scope-bar">
+        <select id="projectFilter">
+          <option value="">All projects</option>
+        </select>
+        <select id="roleFilter">
+          <option value="all">All tasks</option>
+          <option value="assigned">Assigned to me</option>
+        </select>
+        <button class="btn-primary" id="createBtn" data-lead-only>+ Create Task</button>
+      </div>
+
+      <!-- Status counts -->
+      <div id="summary" class="summary"></div>
+
+      <!-- Lead-only: workload -->
+      <div class="card" style="margin-bottom:16px" data-lead-only>
+        <h3>Workload per member</h3>
+        <div id="workload" class="task-list"></div>
+      </div>
+
+      <!-- Member-only-ish: my tasks -->
+      <div class="card" style="margin-bottom:16px">
+        <h3>My upcoming tasks</h3>
+        <div id="mine" class="task-list"></div>
+      </div>
+
+      <!-- Everyone: needs attention -->
+      <div class="card" style="margin-bottom:16px">
+        <h3>Needs attention</h3>
+        <div id="attention" class="task-list"></div>
+      </div>
+
+      <!-- Everyone: per-project summary -->
+      <div class="card">
+        <h3>Across your projects</h3>
+        <div id="acrossProjects" class="task-list"></div>
+      </div>
+
     </main>
   </div>
 
+  <script type="module" src="assets/js/dashboard.js"></script>
 </body>
 </html>
