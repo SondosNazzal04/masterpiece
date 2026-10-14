@@ -50,23 +50,58 @@ const counts = {
 const totalTasks = visible.length;
 const pct = totalTasks ? Math.round((counts.done / totalTasks) * 100) : 0;
 
-/* ---------- Project cover ---------- */
+/* ---------- Project cover OR project strip ---------- */
 const coverEl = document.getElementById('projectCover');
-const activeProject = scopeProject
-  ? projectById(scopeProject)
-  : projects[0];
+const stripEl = document.getElementById('projectStrip');
 
-if (activeProject) {
-  coverEl.dataset.slug = activeProject.coverSlug || 'forest';
-  document.getElementById('coverTitle').textContent = activeProject.name;
-  document.getElementById('coverDeadline').textContent = `Due ${activeProject.due}`;
-  document.getElementById('coverProgressLabel').textContent = `${pct}% complete`;
-  document.getElementById('coverProgressFill').style.width = pct + '%';
+if (scopeProject) {
+  /* ---- Single project view: show cover, hide strip ---- */
+  const activeProject = projectById(scopeProject);
+  coverEl.hidden = false;
+  stripEl.hidden = true;
 
-  if (activeProject.coverImage) {
-    coverEl.dataset.hasImage = 'true';
-    coverEl.style.setProperty('--cover-image', `url('${activeProject.coverImage}')`);
+  if (activeProject) {
+    coverEl.dataset.slug = activeProject.coverSlug || 'forest';
+    document.getElementById('coverTitle').textContent = activeProject.name;
+    document.getElementById('coverDeadline').textContent = `Due ${activeProject.due}`;
+    document.getElementById('coverProgressLabel').textContent = `${pct}% complete`;
+    document.getElementById('coverProgressFill').style.width = pct + '%';
+
+    if (activeProject.coverImage) {
+      coverEl.dataset.hasImage = 'true';
+      coverEl.style.setProperty('--cover-image', `url('${activeProject.coverImage}')`);
+    }
   }
+} else {
+  /* ---- All projects view: show strip, hide cover ---- */
+  coverEl.hidden = true;
+  stripEl.hidden = false;
+
+  const topProjects = projects.slice(0, 3);
+
+  stripEl.innerHTML = topProjects.map(p => {
+    const pt = tasks.filter(t => t.projectId === p.id);
+    const done = pt.filter(t => t.status === 'done').length;
+    const total = pt.length;
+    const projectPct = total ? Math.round((done / total) * 100) : 0;
+
+    return `
+      <a class="project-tile" href="?p=${p.id}">
+        <div class="tile-head" data-slug="${p.coverSlug || 'forest'}"></div>
+        <div class="tile-body">
+          <div class="tile-name">${p.name}</div>
+          <div class="tile-progress">
+            <div class="tile-bar">
+              <div class="tile-bar-fill" style="width:${projectPct}%"></div>
+            </div>
+            <div class="tile-pct">${projectPct}%</div>
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('') + `
+    <div class="project-tile new-tile">+ New project</div>
+  `;
 }
 
 /* ---------- Ring ---------- */
