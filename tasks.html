@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamFlow — Project Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">TeamFlow</div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-link">Overview</a>
+      <a href="tasks.html" class="nav-link active">Project Board</a>
+      <a href="#"          class="nav-link">Team</a>
+      <a href="#"          class="nav-link">Skill Profiles</a>
+      <a href="#"          class="nav-link">Settings</a>
+    </nav>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <h1 class="page-title">Project Board</h1>
+      <div class="user">
+        <div class="avatar" id="userAvatar">YA</div>
+        <span id="userName">Yazan</span>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <div class="scope-bar">
+        <select id="projectFilter">
+          <option value="">All projects</option>
+        </select>
+        <select id="roleFilter">
+          <option value="all">All tasks</option>
+          <option value="assigned">Assigned to me</option>
+        </select>
+        <button class="btn-primary" id="createBtn" data-lead-only>+ Create Task</button>
+      </div>
+
+      <div id="board" class="board"></div>
+
+    </main>
+  </div>
+
+  <!-- Task detail modal -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <button class="close" id="modalClose">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/tasks.js"></script>
+</body>
+</html>
