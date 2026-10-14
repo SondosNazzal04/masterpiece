@@ -39,6 +39,7 @@ document.querySelectorAll('[data-lead-only]').forEach(el => {
 });
 
 /* ---------- Summary cards ---------- */
+/* ---------- Counts ---------- */
 const counts = {
   todo:     visible.filter(t => t.status === 'todo').length,
   progress: visible.filter(t => t.status === 'progress').length,
@@ -46,12 +47,66 @@ const counts = {
   done:     visible.filter(t => t.status === 'done').length
 };
 
+const totalTasks = visible.length;
+const pct = totalTasks ? Math.round((counts.done / totalTasks) * 100) : 0;
+
+/* ---------- Project cover ---------- */
+const coverEl = document.getElementById('projectCover');
+const activeProject = scopeProject
+  ? projectById(scopeProject)
+  : projects[0];
+
+if (activeProject) {
+  coverEl.dataset.slug = activeProject.coverSlug || 'forest';
+  document.getElementById('coverTitle').textContent = activeProject.name;
+  document.getElementById('coverDeadline').textContent = `Due ${activeProject.due}`;
+  document.getElementById('coverProgressLabel').textContent = `${pct}% complete`;
+  document.getElementById('coverProgressFill').style.width = pct + '%';
+
+  if (activeProject.coverImage) {
+    coverEl.dataset.hasImage = 'true';
+    coverEl.style.setProperty('--cover-image', `url('${activeProject.coverImage}')`);
+  }
+}
+
+/* ---------- Ring ---------- */
+const CIRC = 2 * Math.PI * 52;   // 326.7
+const ringFill = document.getElementById('ringFill');
+ringFill.setAttribute('stroke-dasharray', CIRC);
+ringFill.setAttribute('stroke-dashoffset', CIRC);
+
+// animate on next frame so transition fires
+requestAnimationFrame(() => {
+  ringFill.style.strokeDashoffset = CIRC * (1 - pct / 100);
+});
+
+/* ---------- Ring number count-up ---------- */
+const ringNum = document.getElementById('ringNum');
+countUp(ringNum, 0, pct, 900, '%');
+
+/* ---------- Summary cards ---------- */
 document.getElementById('summary').innerHTML = `
-  <div class="card"><div class="num">${counts.todo}</div>     <div class="label">To do</div></div>
-  <div class="card"><div class="num">${counts.progress}</div> <div class="label">In progress</div></div>
-  <div class="card"><div class="num">${counts.review}</div>   <div class="label">In review</div></div>
-  <div class="card"><div class="num">${counts.done}</div>     <div class="label">Done</div></div>
+  <div class="card"><div class="num" data-count="${counts.todo}">0</div>     <div class="label">To do</div></div>
+  <div class="card"><div class="num" data-count="${counts.progress}">0</div> <div class="label">In progress</div></div>
+  <div class="card"><div class="num" data-count="${counts.review}">0</div>   <div class="label">In review</div></div>
+  <div class="card"><div class="num" data-count="${counts.done}">0</div>     <div class="label">Done</div></div>
 `;
+
+document.querySelectorAll('.summary .num[data-count]').forEach(el => {
+  countUp(el, 0, parseInt(el.dataset.count, 10), 500);
+});
+
+/* ---------- Count-up helper ---------- */
+function countUp(el, from, to, duration = 500, suffix = '') {
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);            // ease-out
+    el.textContent = Math.round(from + (to - from) * eased) + suffix;
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 
 /* ---------- Row builder ---------- */
 function taskRow(t, extra = '') {

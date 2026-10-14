@@ -6,10 +6,22 @@ export const users = [
 ];
 
 export const projects = [
-  { id: 'p1', name: 'CampusConnect', due: 'Nov 06, 2026',
-    description: 'A student-built platform to discover campus events.' },
-  { id: 'p2', name: 'Portfolio site', due: 'Dec 01, 2026',
-    description: 'Personal portfolio for graduation showcase.' }
+  {
+    id: 'p1',
+    name: 'CampusConnect',
+    due: 'Nov 06, 2026',
+    description: 'A student-built platform to discover campus events.',
+    coverSlug: 'forest',        // gradient preset — swap for coverImage later
+    coverImage: null            // '/assets/images/covers/campusconnect.jpg'
+  },
+  {
+    id: 'p2',
+    name: 'Portfolio site',
+    due: 'Dec 01, 2026',
+    description: 'Personal portfolio for graduation showcase.',
+    coverSlug: 'terracotta',
+    coverImage: null
+  }
 ];
 
 export const memberships = [

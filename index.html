@@ -12,28 +12,69 @@
 <body>
 
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">TeamFlow</div>
+    <div class="sidebar-brand">
+      <span class="brand-mark"></span>
+      <span>TeamFlow</span>
+    </div>
+
     <nav class="sidebar-nav">
-      <a href="index.html" class="nav-link active">Overview</a>
-      <a href="tasks.html" class="nav-link">Project Board</a>
-      <a href="#"          class="nav-link">Team</a>
-      <a href="#"          class="nav-link">Skill Profiles</a>
-      <a href="#"          class="nav-link">Settings</a>
+      <div class="nav-group">
+        <div class="nav-group-label">Project</div>
+        <a href="index.html" class="nav-link active">
+          <span class="nav-dot"></span> Overview
+        </a>
+        <a href="tasks.html" class="nav-link">
+          <span class="nav-dot"></span> Board
+        </a>
+        <a href="#" class="nav-link">
+          <span class="nav-dot"></span> Team
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-label">Account</div>
+        <a href="#" class="nav-link">
+          <span class="nav-dot"></span> Skill Profiles
+        </a>
+        <a href="#" class="nav-link">
+          <span class="nav-dot"></span> Settings
+        </a>
+      </div>
     </nav>
+
+    <div class="sidebar-foot">
+      <div class="avatar">YA</div>
+      <div class="sidebar-user">
+        <div class="sidebar-user-name">Yazan Ahmad</div>
+        <div class="sidebar-user-role">Team lead</div>
+      </div>
+    </div>
   </aside>
 
   <div class="main">
     <header class="topbar">
       <button class="menu-btn" id="menuBtn">☰</button>
-      <h1 class="page-title">Overview</h1>
-      <div class="user">
-        <div class="avatar" id="userAvatar">YA</div>
-        <span id="userName">Yazan</span>
-      </div>
+      <div class="crumb">Graduation project</div>
     </header>
 
     <main class="content">
 
+      <!-- Project cover -->
+      <div class="project-cover" id="projectCover" data-slug="forest">
+        <div class="cover-inner">
+          <div class="cover-text">
+            <h1 class="cover-title" id="coverTitle">CampusConnect</h1>
+            <div class="cover-meta">
+              <span id="coverDeadline">Due Nov 06, 2026</span>
+              <span class="cover-dot">·</span>
+              <span id="coverProgressLabel">42% complete</span>
+            </div>
+          </div>
+          <div class="cover-progress">
+            <div class="cover-progress-fill" id="coverProgressFill" style="width:42%"></div>
+          </div>
+        </div>
+      </div>
       <!-- Scope bar -->
       <div class="scope-bar">
         <select id="projectFilter">
@@ -47,7 +88,22 @@
       </div>
 
       <!-- Status counts -->
-      <div id="summary" class="summary"></div>
+      <div class="hero-row">
+        <div class="card ring-card">
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-track" cx="60" cy="60" r="52" />
+            <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52"
+                    stroke-dasharray="326.7" stroke-dashoffset="326.7" />
+          </svg>
+          <div class="ring-center">
+            <div class="ring-num" id="ringNum">0</div>
+            <div class="ring-label">complete</div>
+          </div>
+        </div>
+
+        <div id="summary" class="summary"></div>
+      </div>
+      <!-- <div id="summary" class="summary"></div> -->
 
       <!-- Lead-only: workload -->
       <div class="card" style="margin-bottom:16px" data-lead-only>
